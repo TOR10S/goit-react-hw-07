@@ -12,13 +12,13 @@ const ContactsForm = () => {
     const name = form.elements.name.value;
     const number = form.elements.number.value;
 
-    // Перевірка на дублікати
+
     if (contacts.some(contact => contact.name === name)) {
       alert(`${name} is already in contacts`);
       return;
     }
 
-    // Передаємо об'єкт з ім'ям та номером
+
     dispatch(addContact({ name, number }));
     form.reset();
   };

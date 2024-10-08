@@ -35,5 +35,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-/*була помилка з not serealizible action in register */
