@@ -1,22 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, selectContacts } from '../../redux/contactSlice';
+import { addContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/contactSlice';
 
 const ContactsForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.elements.name.value;
     const number = form.elements.number.value;
 
+    // Перевірка на дублікати
     if (contacts.some(contact => contact.name === name)) {
       alert(`${name} is already in contacts`);
       return;
     }
 
-    dispatch(addContact(name, number));
+    // Передаємо об'єкт з ім'ям та номером
+    dispatch(addContact({ name, number }));
     form.reset();
   };
 
